@@ -1,7 +1,7 @@
 # bigquery_budiman
 
 
-1.
+**1.**
 ```sql
 
    WITH brand_gmv AS (
@@ -31,8 +31,9 @@ SELECT
 FROM ranked_brands
 WHERE rank <= 5;
 ```
+<br>
 
-2.
+**2.**
 ```sql
 SELECT 
   customer_email,
@@ -50,8 +51,9 @@ FROM (
 )
 WHERE rn = 1;
 ```
+<br>
 
-3.
+**3.**
 ```sql
 WITH ordered_transactions AS (
   SELECT 
@@ -72,8 +74,9 @@ SELECT
   AVG(days_to_second_purchase) AS avg_days_to_second_purchase
 FROM second_purchases;
 ```
+<br>
 
-4.
+**4.**
 ```sql
 WITH customer_gmv AS (
   SELECT 
