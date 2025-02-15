@@ -1,7 +1,7 @@
 # bigquery_budiman
 
 
-**1.**
+**1. What are the top 5 brands based on GMV for each SBU in PTD (Period to Date) (up to December 2024)?** 
 ```sql
 
    WITH brand_gmv AS (
@@ -33,7 +33,7 @@ WHERE rank <= 5;
 ```
 <br>
 
-**2.**
+**2. What is the customer’s first transaction for each SBU, and when did they make the purchase?**
 ```sql
 SELECT 
   customer_email,
@@ -53,7 +53,7 @@ WHERE rn = 1;
 ```
 <br>
 
-**3.**
+**3. How long does it take for a customer to make their second purchase?**
 ```sql
 WITH ordered_transactions AS (
   SELECT 
@@ -76,7 +76,7 @@ FROM second_purchases;
 ```
 <br>
 
-**4.**
+**4. Identify the top 10 customers with the highest GMV in 2024 and the brands they purchased.**
 ```sql
 WITH customer_gmv AS (
   SELECT 
