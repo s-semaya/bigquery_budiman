@@ -51,20 +51,17 @@ WHERE rn = 1;
 **3. How long does it take for a customer to make their second purchase?**
 ```sql
 
-WITH customer_first_two AS (
+SELECT
+  customer_email,
+  days_to_second_purchase
+FROM (
   SELECT
     customer_email,
-    ordertime,
+    DATE_DIFF(ordertime, LAG(ordertime) OVER (PARTITION BY customer_email ORDER BY ordertime), DAY) AS days_to_second_purchase,
     ROW_NUMBER() OVER (PARTITION BY customer_email ORDER BY ordertime) AS rn
-  FROM `Trx`
+  FROM `your_dataset.Trx`
 )
-SELECT
-  a.customer_email,
-  DATE_DIFF(b.ordertime, a.ordertime, DAY) AS days_to_second_purchase
-FROM customer_first_two a
-JOIN customer_first_two b
-  ON a.customer_email = b.customer_email
-WHERE a.rn = 1 AND b.rn = 2;
+WHERE rn = 2;
 
 ```
 <br>
