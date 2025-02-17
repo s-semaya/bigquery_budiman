@@ -51,11 +51,9 @@ WHERE rn = 1;
 **3. How long does it take for a customer to make their second purchase?**
 ```sql
 
-SELECT
-  customer_email,
-  days_to_second_purchase
+SELECT AVG(days_to_second_purchase) AS avg_days_to_second_purchase
 FROM (
-  SELECT
+  SELECT 
     customer_email,
     DATE_DIFF(ordertime, LAG(ordertime) OVER (PARTITION BY customer_email ORDER BY ordertime), DAY) AS days_to_second_purchase,
     ROW_NUMBER() OVER (PARTITION BY customer_email ORDER BY ordertime) AS rn
