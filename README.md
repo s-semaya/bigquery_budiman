@@ -59,7 +59,7 @@ FROM (
     customer_email,
     DATE_DIFF(ordertime, LAG(ordertime) OVER (PARTITION BY customer_email ORDER BY ordertime), DAY) AS days_to_second_purchase,
     ROW_NUMBER() OVER (PARTITION BY customer_email ORDER BY ordertime) AS rn
-  FROM `your_dataset.Trx`
+  FROM `Trx`
 )
 WHERE rn = 2;
 
